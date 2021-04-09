@@ -43,10 +43,7 @@ const tabsAppender = (selector) => {
 
   axios.get(URL)
   .then(futureData => {
-    console.log(futureData);
-
     const result = Tabs(futureData.data);
-    console.log(result);
     document.querySelector(selector).appendChild(result);
   })
   .catch(error => {
