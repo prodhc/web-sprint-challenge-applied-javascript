@@ -66,9 +66,38 @@ const cardAppender = (selector) => {
 
   axios.get(URL2)
   .then(function (futureData2) {
-    const test2 = futureData2.data.articles.javascript;
-    console.log(`hello`, test2);
+    console.log(futureData2.data.articles)
+    const test1 = futureData2.data.articles.javascript;
+    const test2 = futureData2.data.articles.bootstrap;
+    const test3 = futureData2.data.articles.technology;
+    const test4 = futureData2.data.articles.jquery;
+    const test5 = futureData2.data.articles["node.js"];
+
+    test1.forEach(item => {
+      console.log(item);
+      let outPut = Card(item);
+      document.querySelector(selector).appendChild(outPut);
+    })
+
     test2.forEach(item => {
+      console.log(item);
+      let outPut = Card(item);
+      document.querySelector(selector).appendChild(outPut);
+    })
+
+    test3.forEach(item => {
+      console.log(item);
+      let outPut = Card(item);
+      document.querySelector(selector).appendChild(outPut);
+    })
+
+    test4.forEach(item => {
+      console.log(item);
+      let outPut = Card(item);
+      document.querySelector(selector).appendChild(outPut);
+    })
+
+    test5.forEach(item => {
       console.log(item);
       let outPut = Card(item);
       document.querySelector(selector).appendChild(outPut);
