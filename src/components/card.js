@@ -1,4 +1,6 @@
-const Card = (article) => {
+import axios from 'axios';
+
+const Card = ({headline, authorPhoto, authorName, }) => {
   // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
@@ -17,7 +19,37 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
-}
+
+  const card = document.createElement("div");
+  const headlineV = document.createElement("div");
+  const authorContainer = document.createElement("div");
+  const imgContainer = document.createElement("div");
+  const picture = document.createElement("img");
+  const authorNameV = document.createElement("span");
+
+  card.classList.add("card");
+  headlineV.classList.add("headline");
+  headlineV.textContent = headline;
+  authorContainer.classList.add("author");
+  imgContainer.classList.add("img-container");
+  picture.src = authorPhoto;
+  authorNameV.textContent = authorName;
+
+  card.appendChild(headlineV);
+  card.appendChild(authorContainer);
+  authorContainer.appendChild(imgContainer);
+  imgContainer.appendChild(picture);
+  authorContainer.appendChild(authorNameV);
+
+  card.addEventListener("click", function (event) {
+  console.log(headline);
+});
+
+  return card;
+
+};
+
+
 
 const cardAppender = (selector) => {
   // TASK 6
@@ -28,6 +60,55 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-}
+
+  const URL2 = 'https://lambda-times-api.herokuapp.com/articles';
+  
+
+  axios.get(URL2)
+  .then(function (futureData2) {
+    console.log(futureData2.data.articles)
+    const test1 = futureData2.data.articles.javascript;
+    const test2 = futureData2.data.articles.bootstrap;
+    const test3 = futureData2.data.articles.technology;
+    const test4 = futureData2.data.articles.jquery;
+    const test5 = futureData2.data.articles["node.js"];
+
+    test1.forEach(item => {
+      console.log(item);
+      let outPut = Card(item);
+      document.querySelector(selector).appendChild(outPut);
+    })
+
+    test2.forEach(item => {
+      console.log(item);
+      let outPut = Card(item);
+      document.querySelector(selector).appendChild(outPut);
+    })
+
+    test3.forEach(item => {
+      console.log(item);
+      let outPut = Card(item);
+      document.querySelector(selector).appendChild(outPut);
+    })
+
+    test4.forEach(item => {
+      console.log(item);
+      let outPut = Card(item);
+      document.querySelector(selector).appendChild(outPut);
+    })
+
+    test5.forEach(item => {
+      console.log(item);
+      let outPut = Card(item);
+      document.querySelector(selector).appendChild(outPut);
+    })
+
+  })
+  .catch(error => {
+  });
+  
+  }
+
+
 
 export { Card, cardAppender }
